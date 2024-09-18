@@ -7,4 +7,4 @@ Liza Abraham
 
 ## Activity 1
 Screenshot of the cloned Repo and updated README
-![Repository Screenshot](PRA1_actitivty1.png)
+![Repository Screenshot](assets/img/PRA1_actitivty1.png)
