@@ -4,3 +4,7 @@ This repo is a clone of [varadbhogayata.github.io](https://github.com/varadbhoga
 
 ## Maintained by
 Liza Abraham
+
+## Activity 1
+Screenshot of the cloned Repo and updated README
+![Repository Screenshot](PRA1_actitivty1.png)
