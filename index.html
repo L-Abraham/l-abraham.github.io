@@ -711,69 +711,80 @@ system, communicating findings through documentation and presentations
 
 <script>
   const projects = [
-    {
-      title: "Temperature Forecasting Model",
-      description: "A deep learning model that predicts the next hour's weather using LSTM.",
-      image: "assets/img/liza_img/model.webp",
-      tools: "Python, Keras, Pandas"
-    },
-    {
-      title: "RoastRoute",
-      description: "A GIS for coffee lovers to find the best routes to coffee shops.",
-      image: "assets/img/liza_img/roastroute.jpg",
-      tools: "C++, Google Maps API"
-    },
-    {
-      title: "Financial Dashboard",
-      description: "Built a dashboard with PowerBI to track KPIs and visualize data.",
-      image: "assets/img/liza_img/finance.png",
-      tools: "PowerBI, SQL"
-    },
-    // Add more projects as needed
-  ];
+  {
+    title: "Temperature Forecasting Model",
+    description: "A deep learning model that predicts the next hour's weather using LSTM.",
+    image: "assets/img/liza_img/model.webp",
+    tools: "Python, Keras, Pandas",
+    date: "2023-09-01"
+  },
+  {
+    title: "RoastRoute",
+    description: "A GIS for coffee lovers to find the best routes to coffee shops.",
+    image: "assets/img/liza_img/roastroute.jpg",
+    tools: "C++, Google Maps API",
+    date: "2024-04-15"
+  },
+  {
+    title: "Financial Dashboard",
+    description: "Built a dashboard with PowerBI to track KPIs and visualize data.",
+    image: "assets/img/liza_img/finance.png",
+    tools: "PowerBI, SQL",
+    date: "2024-09-10"
+  }
+];
 
-  let displayedProjects = 1; // Number of projects initially shown
 
-  // Function to generate HTML for a project
-  function generateProjectHTML(project) {
-    return `
-      <div class="col s12 m6">
-        <div class="card medium">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img src="${project.image}" alt="${project.title}" style="height: 100%; width: 100%" />
-          </div>
-          <div class="card-content">
-            <span class="card-title activator teal-text hoverline">${project.title}<i class="mdi-navigation-more-vert right"></i></span>
-            <p>${project.description}</p>
-            <p><strong>Tools:</strong> ${project.tools}</p>
-          </div>
+let displayedProjects = 1; // Number of projects initially shown
+
+// Function to generate HTML for a project
+function generateProjectHTML(project) {
+  return `
+    <div class="col s12 m6 l4">
+      <div class="card medium">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img src="${project.image}" alt="${project.title}" style="height: 100%; width: 100%" />
+        </div>
+        <div class="card-content">
+          <span class="card-title activator teal-text hoverline">${project.title}<i class="mdi-navigation-more-vert right"></i></span>
+          <p>${project.description}</p>
+          <p><strong>Tools:</strong> ${project.tools}</p>
+          <p><strong>Date:</strong> ${project.date}</p>
         </div>
       </div>
-    `;
-  }
+    </div>
+  `;
+}
 
-  // Function to display the latest project initially
-  function displayRecentProjects() {
-    const recentProjectsDiv = document.getElementById('recent-projects');
-    recentProjectsDiv.innerHTML = generateProjectHTML(projects[0]); // Display only the first project
-  }
+// Sort the projects array by date (newest first)
+function sortProjectsByDate() {
+  projects.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
 
-  // Function to load more projects on button click
-  function loadMoreProjects() {
-    const recentProjectsDiv = document.getElementById('recent-projects');
-    for (let i = displayedProjects; i < Math.min(displayedProjects + 1, projects.length); i++) {
-      recentProjectsDiv.innerHTML += generateProjectHTML(projects[i]);
-    }
-    displayedProjects++;
-    
-    // Hide "Load More" button when all projects are displayed
-    if (displayedProjects >= projects.length) {
-      document.getElementById('load-more-btn').style.display = 'none';
-    }
-  }
+// Function to display the most recent projects after sorting
+function displayRecentProjects() {
+  sortProjectsByDate(); // Ensure projects are sorted by date
+  const recentProjectsDiv = document.getElementById('recent-projects');
+  recentProjectsDiv.innerHTML = generateProjectHTML(projects[0]); // Display only the latest project
+}
 
-  // Call the function to display the initial project
-  displayRecentProjects();
+// Function to load more projects on button click
+function loadMoreProjects() {
+  const recentProjectsDiv = document.getElementById('recent-projects');
+  for (let i = displayedProjects; i < Math.min(displayedProjects + 1, projects.length); i++) {
+    recentProjectsDiv.innerHTML += generateProjectHTML(projects[i]);
+  }
+  displayedProjects++;
+
+  // Hide "Load More" button when all projects are displayed
+  if (displayedProjects >= projects.length) {
+    document.getElementById('load-more-btn').style.display = 'none';
+  }
+}
+
+// Call the function to display the most recent project
+displayRecentProjects();
+
 </script>
 
 </body>
