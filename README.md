@@ -33,3 +33,8 @@ About Section
 ## Activity 4
 Here is a screenshot of my embedded google map
 ![Repository Screenshot](assets/img/liza_img/google_map_embed.png)
+
+## Activity 5
+Here are screenshot of my Load More buttons & additional projects
+![Repository Screenshot](assets/img/liza_img/load_more.png)
+![Repository Screenshot](assets/img/liza_img/more_projects.png)
