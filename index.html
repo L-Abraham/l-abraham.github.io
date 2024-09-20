@@ -470,77 +470,10 @@ system, communicating findings through documentation and presentations
 
     <!-- Fourth Section: Projects -->
     <section id="projects" class="section scrollspy">
-      <h3 class="page-title white-text teal">Projects</h3>
+      <h3 class="page-title white-text teal">Recent Projects</h3>
       <div class="container">
-        <div class="row">
-
-          <!-- Temp Model -->
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Temperature Forcasting Model" src="assets/img/liza_img/model.webp" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Temperature Forcasting Model<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  This model will take in weather data and return a prediction for the next hour's weather
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> Python, Keras and Pandas Libraries, Google Colab</li>
-                  <li>Constructed a Long Short-Term Memory (LSTM) deep-learning network using the Keras library</li>
-                  <li>Collected years of hourly weather data from the Government of Canada, and used the Pandas library to clean and
-                    format the data by sorting, selecting relevant fields, mapping, and removing null rows.</li>
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- GIS -->
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="roast route" src="assets/img/liza_img/roastroute.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">RoastRoute<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  GIS for Coffee Lovers
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> C++, Git</li>
-                  <li>Leveraged the GoogleMapsAPI to query nearby coffee shops based on user location</li>
-                  <li>Employed Dijkstra and an enhanced greedy algorithm for multi-destination routing</li>
-
-                </ul>
-                <!-- <div class="card-action">
-                  <a aria-label="Visit " href="https://quiz-up-app.herokuapp.com/" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/varadbhogayata/QuizUp"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div> -->
-              </div>
-            </div>
-          </div>
-
+         <!-- Dynamic project content will be injected here -->
+        <div id="recent-projects"></div>
         </div>
       </div>
     </section>
@@ -772,6 +705,74 @@ system, communicating findings through documentation and presentations
       })
     })
   </script>
+
+<script>
+  const projects = [
+    {
+      title: "Temperature Forecasting Model",
+      description: "A deep learning model that predicts the next hour's weather using LSTM.",
+      image: "assets/img/liza_img/model.webp",
+      tools: "Python, Keras, Pandas"
+    },
+    {
+      title: "RoastRoute",
+      description: "A GIS for coffee lovers to find the best routes to coffee shops.",
+      image: "assets/img/liza_img/roastroute.jpg",
+      tools: "C++, Google Maps API"
+    },
+    {
+      title: "Financial Dashboard",
+      description: "Built a dashboard with PowerBI to track KPIs and visualize data.",
+      image: "assets/img/financial_dashboard.png",
+      tools: "PowerBI, SQL"
+    },
+    // Add more projects as needed
+  ];
+
+  let displayedProjects = 1; // Number of projects initially shown
+
+  // Function to generate HTML for a project
+  function generateProjectHTML(project) {
+    return `
+      <div class="col s12 m6 l4">
+        <div class="card medium">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img src="${project.image}" alt="${project.title}" style="height: 100%; width: 100%" />
+          </div>
+          <div class="card-content">
+            <span class="card-title activator teal-text hoverline">${project.title}<i class="mdi-navigation-more-vert right"></i></span>
+            <p>${project.description}</p>
+            <p><strong>Tools:</strong> ${project.tools}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Function to display the latest project initially
+  function displayRecentProjects() {
+    const recentProjectsDiv = document.getElementById('recent-projects');
+    recentProjectsDiv.innerHTML = generateProjectHTML(projects[0]); // Display only the first project
+  }
+
+  // Function to load more projects on button click
+  function loadMoreProjects() {
+    const recentProjectsDiv = document.getElementById('recent-projects');
+    for (let i = displayedProjects; i < Math.min(displayedProjects + 1, projects.length); i++) {
+      recentProjectsDiv.innerHTML += generateProjectHTML(projects[i]);
+    }
+    displayedProjects++;
+    
+    // Hide "Load More" button when all projects are displayed
+    if (displayedProjects >= projects.length) {
+      document.getElementById('load-more-btn').style.display = 'none';
+    }
+  }
+
+  // Call the function to display the initial project
+  displayRecentProjects();
+</script>
+
 </body>
 
 </html>
