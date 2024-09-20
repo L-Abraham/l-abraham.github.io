@@ -20,3 +20,12 @@ About Section
 
 Experience Section
 ![Repository Screenshot](assets/img/liza_img/experience_section.png)
+
+## Activity 3
+Some screenshots of my updated theme
+
+Intro Section
+![Repository Screenshot](assets/img/liza_img/Intro_theme.png)
+
+About Section
+![Repository Screenshot](assets/img/liza_img/about_theme.png)
