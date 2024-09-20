@@ -29,3 +29,7 @@ Intro Section
 
 About Section
 ![Repository Screenshot](assets/img/liza_img/about_theme.png)
+
+## Activity 4
+Here is a screenshot of my embedded google map
+![Repository Screenshot](assets/img/liza_img/google_map_embed.png)
